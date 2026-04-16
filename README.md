@@ -2,6 +2,13 @@
 
 A smooth 3D character controller built with OpenGL, featuring skeletal animation blending, an orbit camera, and procedural visual effects.
 
+## Video Sample
+
+
+https://github.com/user-attachments/assets/983c968f-6593-46af-a42e-4932d65361f6
+
+
+
 ## Idea
 
 Run around an infinite grid using a fully animated 3D character. The project focuses on seamless animation state transitions (walking vs. running), one-shot action overrides (jumping, punching, kicking), and dynamic environment interactions like procedural footstep dust.
