@@ -4,10 +4,7 @@ A smooth 3D character controller built with OpenGL, featuring skeletal animation
 
 ## Video Sample
 
-
 https://github.com/user-attachments/assets/983c968f-6593-46af-a42e-4932d65361f6
-
-
 
 ## Idea
 
@@ -21,7 +18,7 @@ _[Insert a GIF/Video of your character running, kicking, and leaving dust trails
 | ------------ | --------------------------------- |
 | `W` / `S`    | Move forward / backward           |
 | `A` / `D`    | Turn left / right                 |
-| `Shift`      | Toggle Walk / Run mode            |
+| `Shift`      | Hold to Walk (Run by default)     |
 | `Space`      | Jump                              |
 | `J`          | Punch                             |
 | `K`          | Kick                              |

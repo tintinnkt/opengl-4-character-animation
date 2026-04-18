@@ -57,7 +57,7 @@ enum class AnimState {
 };
 AnimState currentState = AnimState::IDLE;
 
-bool isRunMode = false;
+bool isRunMode = true;
 
 float     actionTimer    = 0.0f;
 float     actionDuration = 0.0f;
@@ -84,7 +84,6 @@ Animation*     punchAnim         = nullptr;
 bool jumpPressed  = false;
 bool kickPressed  = false;   // K
 bool punchPressed = false;   // J
-bool shiftPressed = false;
 
 // ── Guard: only call PlayAnimation when the clip actually changes ─────────────
 // This prevents the animator restarting the same clip every frame,
@@ -238,16 +237,9 @@ void processInput(GLFWwindow* window)
                      currentState == AnimState::KICK ||
                      currentState == AnimState::PUNCH);
 
-    // ── Shift toggle (walk ↔ run) — debounced ────────────────────────────────
+    // ── Run by default, Shift to Walk ────────────────────────────────────────
     bool shiftDown = glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS;
-    if (shiftDown && !shiftPressed) {
-        isRunMode = !isRunMode;
-        if      (currentState == AnimState::WALK)          { currentState = AnimState::RUN;           switchAnimation(runAnim);          }
-        else if (currentState == AnimState::RUN)           { currentState = AnimState::WALK;          switchAnimation(walkAnim);         }
-        else if (currentState == AnimState::WALK_BACKWARD) { currentState = AnimState::RUN_BACKWARD;  switchAnimation(runBackwardAnim);  }
-        else if (currentState == AnimState::RUN_BACKWARD)  { currentState = AnimState::WALK_BACKWARD; switchAnimation(walkBackwardAnim); }
-    }
-    shiftPressed = shiftDown;
+    isRunMode = !shiftDown;
 
     // ── One-shot actions ──────────────────────────────────────────────────────
     if (!inAction) {
@@ -369,7 +361,7 @@ void updateWindowTitle(GLFWwindow* window)
     std::string mode = isRunMode ? "[RUN]" : "[WALK]";
     std::string t = "Playable Character  |  " + mode
                   + "  State: " + std::string(stateToString(currentState))
-                  + "  |  W:Fwd  S:Back  A/D:Turn  Shift:Walk/Run  SPACE:Jump  J:Punch  K:Kick";
+                  + "  |  W:Fwd  S:Back  A/D:Turn  Shift:Walk  SPACE:Jump  J:Punch  K:Kick";
     glfwSetWindowTitle(window, t.c_str());
 }
 
